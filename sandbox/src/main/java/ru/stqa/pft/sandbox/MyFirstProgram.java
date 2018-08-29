@@ -8,24 +8,27 @@ public class MyFirstProgram {
         hello("user");
         hello("Ilya");
 
-        double l = 5;
-        double a = 5, b = 6;
-        System.out.println("Площадь квадрата со стороной " + l + " = " + area(l));
-        System.out.println("Площадь прямоугольнка со сторонами " + a + " и " + b + " = " + area(a, b));
+        Square s = new Square(5);
+        System.out.println("Площадь квадрата со стороной " + s.l + " = " + s.area());
 
+        ///////////////////////////////////////////////////////////////////////////////////
+
+        Rectangle r = new Rectangle(4, 6);
+        System.out.println("Площадь прямоугольнка со сторонами " + r.a + " и " + r.b + " = " + r.area());
+
+
+        Point p1 = new Point(4, 6, 7, 8);
+        System.out.println("Две точки на плоски равны " + p1.distance());
     }
 
     public static void hello(String somebody) {
 
         System.out.println("Hello, " + somebody + "!");
-    }
-
-    public static double area(double len) {
-        return len * len;
-    }
-
-    public static double area(double a, double b) {
-        return a * b;
 
     }
+
+
 }
+
+
+
