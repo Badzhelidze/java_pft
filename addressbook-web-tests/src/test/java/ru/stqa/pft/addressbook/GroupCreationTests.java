@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.*;
 
-public class GroupCreationTests {
+public class GroupCreationTests extends TestBase {
     ChromeDriver wd;
 
     @BeforeMethod
