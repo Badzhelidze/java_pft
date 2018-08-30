@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -10,7 +11,16 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
 
-    ChromeDriver wd;
+    WebDriver wd;
+
+
+    @BeforeMethod
+    public void setUp() throws Exception {
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\badzhelidze\\Desktop\\dev\\java_pft\\chromedriver.exe");
+        wd = new ChromeDriver();
+        wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        login("admin", "secret");
+    }
 
     public static boolean isAlertPresent(ChromeDriver wd) {
         try {
@@ -21,15 +31,7 @@ public class TestBase {
         }
     }
 
-    @BeforeMethod
-    public void setUp() throws Exception {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\badzhelidze\\Desktop\\dev\\java_pft\\chromedriver.exe");
-        wd = new ChromeDriver();
-        wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        login("admin", "secret");
-    }
-
-    private void login(String username, String password) {
+    protected void login(String username, String password) {
         wd.get("http://localhost/addressbook/");
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
@@ -79,5 +81,59 @@ public class TestBase {
 
     protected void selectGroup() {
         wd.findElement(By.name("selected[]")).click();
+    }
+
+    protected void fillContactForm(ContactData contactData) {
+        wd.findElement(By.name("firstname")).click();
+        wd.findElement(By.name("firstname")).clear();
+        wd.findElement(By.name("firstname")).sendKeys(contactData.getMyname());
+        wd.findElement(By.name("middlename")).click();
+        wd.findElement(By.name("middlename")).clear();
+        wd.findElement(By.name("middlename")).sendKeys(contactData.getMysurname());
+        wd.findElement(By.name("lastname")).click();
+        wd.findElement(By.name("lastname")).clear();
+        wd.findElement(By.name("lastname")).sendKeys(contactData.getMylastname());
+        wd.findElement(By.name("nickname")).click();
+        wd.findElement(By.name("nickname")).clear();
+        wd.findElement(By.name("nickname")).sendKeys(contactData.getMynick());
+        wd.findElement(By.name("title")).click();
+        wd.findElement(By.name("title")).clear();
+        wd.findElement(By.name("title")).sendKeys(contactData.getMytitle());
+        wd.findElement(By.name("company")).click();
+        wd.findElement(By.name("company")).clear();
+        wd.findElement(By.name("company")).sendKeys(contactData.getMycompany());
+        wd.findElement(By.name("address")).click();
+        wd.findElement(By.name("address")).clear();
+        wd.findElement(By.name("address")).sendKeys(contactData.getMyaddress());
+        wd.findElement(By.name("home")).click();
+        wd.findElement(By.name("home")).clear();
+        wd.findElement(By.name("home")).sendKeys(contactData.getMyhome());
+        wd.findElement(By.name("mobile")).click();
+        wd.findElement(By.name("mobile")).clear();
+        wd.findElement(By.name("mobile")).sendKeys(contactData.getMymobile());
+        wd.findElement(By.name("work")).click();
+        wd.findElement(By.name("work")).clear();
+        wd.findElement(By.name("work")).sendKeys(contactData.getMywork());
+        wd.findElement(By.name("fax")).click();
+        wd.findElement(By.name("fax")).clear();
+        wd.findElement(By.name("fax")).sendKeys(contactData.getMyfax());
+        if (!wd.findElement(By.xpath("//div[@id='content']/form/select[5]//option[2]")).isSelected()) {
+            wd.findElement(By.xpath("//div[@id='content']/form/select[5]//option[2]")).click();
+        }
+        wd.findElement(By.name("address2")).click();
+        wd.findElement(By.name("address2")).clear();
+        wd.findElement(By.name("address2")).sendKeys("123");
+        wd.findElement(By.name("phone2")).click();
+        wd.findElement(By.name("phone2")).clear();
+        wd.findElement(By.name("phone2")).sendKeys("123");
+        wd.findElement(By.name("notes")).click();
+        wd.findElement(By.name("notes")).clear();
+        wd.findElement(By.name("notes")).sendKeys("123");
+        wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+        wd.findElement(By.linkText("home")).click();
+    }
+
+    protected void addNewContact() {
+        wd.findElement(By.linkText("add new")).click();
     }
 }
