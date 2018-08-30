@@ -48,7 +48,21 @@ public class ContactCreationTests {
         wd.findElement(By.name("nickname")).click();
         wd.findElement(By.name("nickname")).clear();
         wd.findElement(By.name("nickname")).sendKeys("nick");
+
+        //Спрятан кусок кода для выбора фото контакта
+/*
+        String parentHandle = wd.getWindowHandle();
         wd.findElement(By.name("photo")).click();
+        for(String childHandle : wd.getWindowHandles()){
+            if (!childHandle.equals(parentHandle)){
+                wd.switchTo().window(childHandle);
+            }
+        }
+        wd.findElement(By.name("20180827_161606.jpg")).click();
+        wd.close();
+        wd.switchTo().window(parentHandle);
+        */
+
         wd.findElement(By.name("title")).click();
         wd.findElement(By.name("title")).clear();
         wd.findElement(By.name("title")).sendKeys("title");
