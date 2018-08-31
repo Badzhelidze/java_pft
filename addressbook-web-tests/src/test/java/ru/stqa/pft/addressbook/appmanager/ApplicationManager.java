@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
     WebDriver wd;
-    private final GroupHelper groupHelper = new GroupHelper();
+    private GroupHelper groupHelper;
 
     public static boolean isAlertPresent(ChromeDriver wd) {
         try {
@@ -23,9 +23,9 @@ public class ApplicationManager {
 
     public void init() {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\badzhelidze\\Desktop\\dev\\java_pft\\chromedriver.exe");
-        wd = new ChromeDriver(wd);
+        wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        groupHelper = new GroupHelper();
+        groupHelper = new GroupHelper(wd);
         login("admin", "secret");
     }
 
