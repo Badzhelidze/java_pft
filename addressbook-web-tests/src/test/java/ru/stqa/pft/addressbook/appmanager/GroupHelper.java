@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 public class GroupHelper {
-    WebDriver wd;
+    private WebDriver wd;
 
     public GroupHelper(WebDriver wd) {
         this.wd = wd;
