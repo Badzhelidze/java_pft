@@ -16,6 +16,10 @@ public class TestBase {
 
     @BeforeMethod
     public void setUp() throws Exception {
+        init();
+    }
+
+    private void init() {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\badzhelidze\\Desktop\\dev\\java_pft\\chromedriver.exe");
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
@@ -72,6 +76,10 @@ public class TestBase {
 
     @AfterMethod
     public void tearDown() {
+        stop();
+    }
+
+    private void stop() {
         wd.quit();
     }
 
