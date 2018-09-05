@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
 
     WebDriver wd;
+
     private ContactHelper contactHelper;
     private SessionHelper sessionHelper;
     private NavigationHelper navigationHelper;
@@ -21,8 +22,10 @@ public class ApplicationManager {
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);
         navigationHelper = new NavigationHelper(wd);
+
         sessionHelper = new SessionHelper(wd);
         sessionHelper.login("admin", "secret");
+        wd.get("http://localhost/addressbook/");
     }
 
 
@@ -45,4 +48,15 @@ public class ApplicationManager {
     public ContactHelper getContactHelper() {
         return contactHelper;
     }
+
+    public void gotoContactPage() {
+        wd.findElement(By.linkText("home")).click();
+    }
+
+    public void chooseContact() {
+        wd.findElement(By.name("selected[]")).click();
+    }
+
+
+
 }
