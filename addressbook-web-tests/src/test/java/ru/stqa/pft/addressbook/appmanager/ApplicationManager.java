@@ -3,6 +3,10 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.BrowserType;
+
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
@@ -16,8 +20,18 @@ public class ApplicationManager {
 
 
     public void init() {
-        System.setProperty("webdriver.chrome.driver","chromedriver.exe");
-        wd = new ChromeDriver();
+        String browser = BrowserType.FIREFOX;
+        if (browser == BrowserType.CHROME) {
+            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+            wd = new ChromeDriver();
+        } else if (browser == BrowserType.FIREFOX) {
+            System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+            wd = new FirefoxDriver();
+        } else if (browser == BrowserType.IE) {
+            System.setProperty("webdriver.ie.driver", "IEDriverServer.exe");
+            wd = new InternetExplorerDriver();
+        }
+
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);
@@ -56,7 +70,6 @@ public class ApplicationManager {
     public void chooseContact() {
         wd.findElement(By.name("selected[]")).click();
     }
-
 
 
 }
