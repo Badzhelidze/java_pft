@@ -16,7 +16,7 @@ public class ApplicationManager {
 
 
     public void init() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\badzhelidze\\Desktop\\dev\\java_pft\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","chromedriver.exe");
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         groupHelper = new GroupHelper(wd);
