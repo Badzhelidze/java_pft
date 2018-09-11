@@ -13,7 +13,7 @@ public class ContactModificationTest extends TestBase {
         app.gotoContactPage();
         app.chooseContact();
         app.getContactHelper().editContact();
-        app.getContactHelper().fillContactForm(new ContactData("Ilya", "Badzhelidze", "Murmanovich", "nick", "title", "8-921-636-90-01", "123453453", "Reksoft", "8-921-636-90-01", "8-921-636-90-01", "8-921-636-90-01"));
+        app.getContactHelper().fillContactForm(new ContactData("Ilya", "Badzhelidze", "Murmanovich", "nick", "title", "8-921-636-90-01", "123453453", "Reksoft", "8-921-636-90-01", "8-921-636-90-01", "8-921-636-90-01", null), false);
         app.getContactHelper().submitContactCreation("//div[@id='content']/form/input[22]");
 
 
