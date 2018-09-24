@@ -35,7 +35,7 @@ public class ApplicationManager {
         } else if (browser.equals(BrowserType.IE)) {
             System.setProperty("webdriver.ie.driver", "IEDriverServer.exe");
             wd = new InternetExplorerDriver();
-        }
+                    }
 
 
         wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);

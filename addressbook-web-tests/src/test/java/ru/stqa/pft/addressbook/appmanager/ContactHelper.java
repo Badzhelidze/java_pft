@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -23,12 +24,9 @@ public class ContactHelper extends HelperBase {
         type(By.name("lastname"), (contactData.getMylastname()));
         type(By.name("nickname"), (contactData.getMynick()));
 
-        wd.findElement(By.name("photo")).click();
-        wd.switchTo()
-                .activeElement()
-                .sendKeys(
-                        "C:\\Users\\badzhelidze\\Downloads\\20180827_161606.png");
-        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        wd.findElement(By.xpath("//input[@type='file']")).sendKeys("C:\\Users\\badzhelidze\\Downloads\\20180827_161606.png");
+        //wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+
         type(By.name("title"), (contactData.getMytitle()));
         type(By.name("company"), (contactData.getMycompany()));
         type(By.name("address"), (contactData.getMyaddress()));
