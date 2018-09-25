@@ -5,6 +5,11 @@ public class EchoTestDrive {
         Echo e1 = new Echo();
         Echo e2 = new Echo();
 
+        Echo[] pets;
+        pets = new Echo[7];
+        pets[0] = new Echo();
+        pets[1]= new Echo();
+
         int x = 0;
 
         while (x < 4) {
